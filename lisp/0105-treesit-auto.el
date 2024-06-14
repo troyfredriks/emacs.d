@@ -9,11 +9,28 @@
 ;;   (error "treesit-auto requires v29.1 or higher"))
 
 ;; Install it
+(install-pkg 'verilog-ts-mode)
 (install-pkg 'treesit-auto)
 
 ;; Use it
 ;; treesit-auto doesn't have autoloads so have to require it
-(require 'treesit-auto)
+;;(require 'verilog-ts-mode)
+;;(require 'treesit-auto)
 
-(setq treesit-auto-install 'prompt)
-(global-treesit-auto-mode)
+;;(setq treesit-auto-install 'prompt)
+
+;;language recipes:
+;;  (setq verilog-tsauto-config
+;; 	(make-treesit-auto-recipe
+;; 	 :lang 'verilog
+;; 	 :ts-mode 'verilog-ts-mode
+;; 	 :remap 'verilog-mode
+;; 	 :url "https://github.com/tree-sitter/tree-sitter-verilog"
+;; 	 :revision "master"
+;; 	 :source-dir "src"))
+
+;; (add-to-list 'treesit-auto-recipe-list verilog-tsauto-config)
+
+(add-to-list 'auto-mode-alist '("\\.s?vh?\\'" . verilog-ts-mode))
+
+;;(global-treesit-auto-mode)
