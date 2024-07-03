@@ -29,9 +29,11 @@
 ;; Load rest of init files ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq debug-on-error t)
 (add-to-list 'load-path "~/.emacs.d/site-lisp/copilot.el")
+(add-to-list 'load-path "~/.emacs.d/lsp-bridge")
 (util/compile-directory site-lisp-d)
 (util/load-elc-directory site-lisp-d)
 
 (util/compile-directory lisp-d)
 (util/load-elc-directory lisp-d)
+
 (setq debug-on-error nil)

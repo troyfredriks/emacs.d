@@ -18,3 +18,9 @@ elpa/
 transient/
 tramp
 anaconda-mode/
+.cache
+.lsp-session*
+eln-cache/
+eshell/
+tree-sitter/
+verilog-ext/

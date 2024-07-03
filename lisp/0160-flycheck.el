@@ -40,6 +40,7 @@
  ;; parse buffer 3s after a change
  flycheck-check-syntax-automatically '(mode-enabled idle-change)
  flycheck-idle-change-delay '3
+ flycheck-checker-error-threshold 1000
  )
 
 (message

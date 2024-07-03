@@ -11,8 +11,13 @@
 ;; Install company-fuzzy (must load after setting company-backends)
 (try-install-pkg 'company-fuzzy)
 
-;; Use it
-(add-hook 'after-init-hook 'global-company-mode)
+;; Use it when in no-window mode
+(add-hook 'after-init-hook
+          (lambda ()
+            (when (not (display-graphic-p))
+              (global-company-mode))))
+
+;;(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Configure keys
 (after-load 'company
