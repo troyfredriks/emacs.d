@@ -59,6 +59,7 @@
 ;; use svlint as linter
 (setq verilog-ext-flycheck-linter 'verilog-svlint)
 
+(setq verilog-ext-jump-to-parent-module-engine "rg")
 (verilog-ext-mode-setup)
 
 ;; For `lsp-bridge:

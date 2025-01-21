@@ -55,10 +55,11 @@
 ;;     bar.org
 (defconst org-lyfe-d (expand-file-name "~/notes"))
 
+(defconst org-roam-d (concat org-lyfe-d "/zettlekasten"))
 ;; save-place file
 (defconst save-place-f (concat etc-d "/saveplace"))
 
-;; ido.last
+3;; ido.last
 (defconst ido-f (concat etc-d "/ido.last"))
 
 ;; recentf files

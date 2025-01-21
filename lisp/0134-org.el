@@ -22,6 +22,8 @@
     ;; Not recursive
     (setq org-agenda-files `(,org-lyfe-d))
   )
+;; start with indent mode
+(setq org-startup-indented t)
 
 ;; Configure clock-persist
 (setq org-clock-persist 'history

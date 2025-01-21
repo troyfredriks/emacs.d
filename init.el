@@ -37,3 +37,4 @@
 (util/load-elc-directory lisp-d)
 
 (setq debug-on-error nil)
+(put 'downcase-region 'disabled nil)

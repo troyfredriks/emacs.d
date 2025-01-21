@@ -16,4 +16,9 @@
 ;(yas-global-mode 1)
 
 (require 'lsp-bridge)
+
+;; consider investigating https://github.com/manateelazycat/auto-save
+(setq lsp-bridge-disable-backup nil)
+
+
 (global-lsp-bridge-mode)
