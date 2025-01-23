@@ -29,42 +29,42 @@
 
 ;; Can also be set through `M-x RET customize-group RET verilog-ext':
 ;; Comment out/remove the ones you do not need
-(require 'verilog-ext)
-(setq verilog-ext-feature-list
-      '(font-lock
-        xref
-        capf
-        hierarchy
-        eglot
-        lsp
-        lsp-bridge
-        ;;lspce
-        flycheck
-        beautify
-        navigation
-        template
-        formatter
-        compilation
-        imenu
-        which-func
-        hideshow
-        typedefs
-        time-stamp
-        block-end-comments
-        ports))
+;; (require 'verilog-ext)
+;; (setq verilog-ext-feature-list
+;;       '(font-lock
+;;         xref
+;;         capf
+;;         hierarchy
+;;         eglot
+;;         lsp
+;;         lsp-bridge
+;;         ;;lspce
+;;         flycheck
+;;         beautify
+;;         navigation
+;;         template
+;;         formatter
+;;         compilation
+;;         imenu
+;;         which-func
+;;         hideshow
+;;         typedefs
+;;         time-stamp
+;;         block-end-comments
+;;         ports))
 
 ;; explicitly set hierarchy frontend to `hierarchy'
-(setq verilog-ext-hierarchy-frontend 'hierarchy)
+;(setq verilog-ext-hierarchy-frontend 'hierarchy)
 
 ;; use svlint as linter
-(setq verilog-ext-flycheck-linter 'verilog-svlint)
+;(setq verilog-ext-flycheck-linter 'verilog-svlint)
 
-(setq verilog-ext-jump-to-parent-module-engine "rg")
-(verilog-ext-mode-setup)
+;(setq verilog-ext-jump-to-parent-module-engine "rg")
+;(verilog-ext-mode-setup)
 
 ;; For `lsp-bridge:
-(verilog-ext-lsp-bridge-set-server 've-svlangserver)
+;(verilog-ext-lsp-bridge-set-server 've-svlangserver)
 ;; For `lsp-mode':
-(verilog-ext-lsp-set-server 've-svlangserver)
+;(verilog-ext-lsp-set-server 've-svlangserver)
 
-(add-hook 'verilog-mode-hook #'verilog-ext-mode)
+;(add-hook 'verilog-mode-hook #'verilog-ext-mode)

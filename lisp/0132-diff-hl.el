@@ -9,5 +9,5 @@
 (install-pkg 'diff-hl)
 
 ;; Use package
-(add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
-(add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+;(add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
+;(add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
