@@ -1,5 +1,7 @@
 #+TITLE: emacs.d
 
+Reworking for NixOS support.
+
 I needed to rewrite my init away from the monolithic =.emacs= file, of
 which this is an attempt.
   
