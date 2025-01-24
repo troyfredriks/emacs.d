@@ -24,3 +24,6 @@ eln-cache/
 eshell/
 tree-sitter/
 verilog-ext/
+.org-id-locations
+bookmarks
+org-roam.db
