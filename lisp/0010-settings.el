@@ -52,6 +52,9 @@
 (column-number-mode t)                  ; Show column
 (which-function-mode t)                 ; Show function in mode line
 
+;; Configure no scroll bar
+(scroll-bar-mode -1)
+
 ;; Configure overwrite
 (pending-delete-mode t)                 ; Delete highlighted text with typed
 

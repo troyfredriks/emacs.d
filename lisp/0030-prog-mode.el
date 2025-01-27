@@ -13,3 +13,5 @@
         (tab-count (how-many "^\t" (point-min) (point-max))))
     (if (> space-count tab-count) (setq indent-tabs-mode nil))
     (if (> tab-count space-count) (setq indent-tabs-mode t))))
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
