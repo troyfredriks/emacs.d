@@ -52,22 +52,23 @@
 (column-number-mode t)                  ; Show column
 (which-function-mode t)                 ; Show function in mode line
 
-;; Configure no scroll bar
-(scroll-bar-mode -1)
-
 ;; Configure overwrite
 (pending-delete-mode t)                 ; Delete highlighted text with typed
 
 ;; Configure menu-bar
-(if (eq is-term t)
-    (menu-bar-mode -1)			; Turn off if term
-  (menu-bar-mode t)                     ; Turn on otherwise
-  )
+;; (if (eq is-term t)
+;;     (menu-bar-mode -1)			; Turn off if term
+;;   (menu-bar-mode t)                     ; Turn on otherwise
+;;   )
+(menu-bar-mode -1)
 
 ;; Configure tool-bar
 (if (eq is-linux t)
     (tool-bar-mode -1)                 ; Turn off tool-bar in linux
   )
+
+;; Configure no scroll bar
+(scroll-bar-mode -1)
 
 ;; Configure keystroke freq.
 (setq echo-keystrokes 0)		; Set to show immediately

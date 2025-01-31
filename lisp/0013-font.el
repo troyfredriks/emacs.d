@@ -6,6 +6,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Add it
-(add-to-list 'default-frame-alist '(font . "Hack"))
+(add-to-list 'default-frame-alist '(font . "Hack Nerd Font"))
 (set-face-attribute 'default nil
 		    :family "Hack")
