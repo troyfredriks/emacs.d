@@ -13,6 +13,7 @@
 
 ;; Install it
 (install-pkg 'org)
+(install-pkg 'org-bullets)
 
 ;; Use it
 
@@ -31,3 +32,10 @@
 (org-clock-persistence-insinuate)
 
 (setq org-src-fontify-natively t)
+
+;; set default capture buffer to inbox.org
+(setq org-default-notes-file (concat org-lyfe-d "/inbox.org"))
+
+;; Local hooks
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook 'org-bullets-mode)
