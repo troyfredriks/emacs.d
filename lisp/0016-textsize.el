@@ -6,7 +6,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Install it
-(install-pkg 'textsize)
+;;(install-pkg 'textsize)
 
 ;; Use it
-(textsize-mode t)
+;;(textsize-mode t)
+
+;;(setq textsize-default-points 24)
