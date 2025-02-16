@@ -11,7 +11,7 @@
   )
 
 ;; Install various theme packages
-(install-pkg 'zenburn-theme)
+(install-pkg 'catppuccin-theme)
 
 ;; Load theme
-(load-theme 'zenburn t)
+(load-theme 'catppuccin :no-confirm)
