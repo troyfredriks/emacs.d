@@ -30,7 +30,7 @@
 ;; Configure highlight
 (global-hl-line-mode t)                 ; Show highlights
 (set-face-foreground 'highlight nil)
-(set-face-background 'hl-line "#777777")
+(set-face-background 'hl-line "#181926") ; TODO: get this to track the theme.
 
 ;; Configure emacs interactive
 (fset 'yes-or-no-p 'y-or-n-p)           ; change yes to y and no to n

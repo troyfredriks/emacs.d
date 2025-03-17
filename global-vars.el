@@ -55,7 +55,7 @@
 ;;     bar.org
 (defconst org-lyfe-d (expand-file-name "~/notes"))
 
-(defconst org-roam-d (concat org-lyfe-d "/zettlekasten"))
+(defconst org-roam-d (concat org-lyfe-d "/zettlekasten")) ;; FIXME!!! spelling wrong at least. but likely want to move to ~/notes?
 ;; save-place file
 (defconst save-place-f (concat etc-d "/saveplace"))
 
