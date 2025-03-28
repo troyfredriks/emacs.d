@@ -20,9 +20,14 @@
 
 ;; Configure it
 ;; Set agenda directory to org-lyfe if it exists
+;; https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
 (if (file-exists-p org-lyfe-d)
-    ;; Not recursive
-    (setq org-agenda-files `(,org-lyfe-d))
+    ;; (setq org-agenda-files (append
+    ;; 			    (list (concat org-lyfe-d "inbox.org"))
+    ;; 			    (directory-files-recursively org-lyfe-d "\\todo.org$")))
+    (setq org-agenda-files (append
+			    `(,org-lyfe-d)
+			    (directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$")))
   )
 ;; start with indent mode
 (setq org-startup-indented t)
@@ -35,19 +40,19 @@
 (setq org-src-fontify-natively t)
 
 ;; set default capture buffer to inbox.org
-(setq org-default-notes-file (concat org-lyfe-d "/inbox.org"))
+(setq org-default-notes-file (concat org-lyfe-d "inbox.org"))
 
 ;; https://blog.jethro.dev/posts/capturing_inbox/
 ;; this capture template differs slightly from the default behavior of adding
 ;; entries as second level bullets under 'tasks'; instead creating level 1 bullets.
 (setq org-capture-templates
-      `(("i" "inbox" entry (file ,(concat org-lyfe-d "/inbox.org"))
+      `(("i" "inbox" entry (file ,(concat org-lyfe-d "inbox.org"))
          "* TODO %?")
 ;;        ("e" "email" entry (file+headline ,(concat org-lyfe-d "emails.org") "Emails")
 ;;         "* TODO [#A] Reply: %a :@home:@school:" :immediate-finish t)
 ;;        ("l" "link" entry (file ,(concat org-lyfe-d "inbox.org"))
 ;;         "* TODO %(org-cliplink-capture)" :immediate-finish t)
-        ("c" "org-protocol-capture" entry (file ,(concat org-lyfe-d "/inbox.org"))
+        ("c" "org-protocol-capture" entry (file ,(concat org-lyfe-d "inbox.org"))
          "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)))
 
 
