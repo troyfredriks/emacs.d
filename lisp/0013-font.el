@@ -6,7 +6,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Add it
-(add-to-list 'default-frame-alist '(font . "Hack Nerd Font Mono-16"))
+(add-to-list 'default-frame-alist '(font . "Hack Nerd Font Mono-10"))
 (set-face-attribute 'default nil
 		    :family "Hack Nerd Font Mono"
-		    :height 160)
+		    :height 100)
