@@ -21,11 +21,14 @@
 ;; Configure it
 ;; Set agenda directory to org-lyfe if it exists
 ;; https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
+;; appends all org files that should be tracked by agenda to the agenda list:
 (if (file-exists-p org-lyfe-d)
-    (setq org-agenda-files (cons
-			    (concat org-lyfe-d "inbox.org")
-			    (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)
-			    ))
+    (setq org-agenda-files (append (list
+				    (concat org-lyfe-d "inbox.org")
+				    (concat org-lyfe-d "todo.org")
+				    (concat org-lyfe-d "someday.org"))
+				   (nconc
+				    (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t))))
   )
 
 (setq org-todo-keywords
