@@ -24,7 +24,8 @@
 (if (file-exists-p org-lyfe-d)
     (setq org-agenda-files (cons
 			    (concat org-lyfe-d "inbox.org")
-			    (directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$")))
+			    (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)
+			    ))
   )
 
 (setq org-todo-keywords
@@ -94,12 +95,13 @@
                ((org-agenda-overriding-header " In Progress")
                 (org-agenda-files (cons
                                    (concat org-lyfe-d "todo.org")
-                                   (directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$")
+                                   (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)
 				   ))))
 
          (todo "TODO"
                ((org-agenda-overriding-header " Project Tasks")
-                (org-agenda-files (directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$"))))
+                (org-agenda-files (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)
+				  )))
 
          (todo "TODO"
                ((org-agenda-overriding-header " One Off Tasks")
@@ -109,7 +111,7 @@
                ((org-agenda-overriding-header " Blocked Tasks")
                 (org-agenda-files  (cons
 				    (concat org-lyfe-d "todo.org")
-                                    (directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$")
+                                    (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)
 				    ))))
          nil))))
 
@@ -118,8 +120,9 @@
      org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes 'confirm)  ;; Allow creation of headings under which to group tasks, when refiling them
 (setq org-refile-targets  `(
-			   (,(concat org-lyfe-d "todo.org") . (:level . 0))
-			   (,(directory-files-recursively (concat org-lyfe-d "projects/") "\\todo.org$") . (:level . 0))
+			   (,(concat org-lyfe-d "todo.org") :level . 0)
+			   (,(concat org-lyfe-d "someday.org") :level . 0)
+			   (,(directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t) :level . 0)
 			   ))
 
 
