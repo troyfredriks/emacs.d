@@ -128,6 +128,48 @@
 			   (,(directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t) :level . 0)
 			   ))
 
+;; set deadline or schedule
+;; custom function that prompts user to set a deadline, schedule or none. use s for schedule, d for deadline and <enter> for none.
+(defun troyaf/org-set-deadline-or-schedule ()
+  (interactive)
+  (let ((choice (read-char-choice "Set deadline (d), schedule (s) or none (enter): " '(?d ?s ?\C-m))))
+    (cond
+     ((eq choice ?d)
+      (org-deadline nil nil))
+     ((eq choice ?s)
+      (org-schedule nil nil))
+     ((eq choice ?\C-m)
+      (message "No deadline or schedule set.")))))
+
+;; refile single task
+(defun troyaf/org-refile-inbox ()
+  (interactive)
+    (if (y-or-n-p "Does this task take less than 2 minutes? ")
+	(message "Please do it now!")
+      (progn
+	(org-set-tags-command)
+	(org-priority)
+	(troyaf/org-set-deadline-or-schedule)
+	(org-refile nil nil nil))))
+
+;; create new project
+;; this custom function creates a new project in the projects directory, including a new dir and a todo.org file.
+(defun troyaf/org-create-new-project ()
+  (interactive)
+  (let* ((project-name (read-string "Project name: "))
+	 (project-dir (concat org-lyfe-d "projects/" project-name "/")))
+    (if (file-exists-p project-dir)
+	(message "Project already exists!")
+      (progn
+	(make-directory project-dir t) ; Ensure the directory is created recursively
+	(find-file (concat project-dir "todo.org"))
+	(insert ":PROPERTIES:\n"
+		"#+CATEGORY: " project-name "\n"
+		":END:\n"
+		"#+TITLE: " project-name "\n"
+		"* NEXT Define Project: " project-name "\n")
+	(save-buffer)
+	(message "Project created!")))))
 
 ;; keybinds
 (global-set-key (kbd "C-c l") #'org-store-link)
