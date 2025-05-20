@@ -190,7 +190,7 @@
   (interactive)
   (let* ((project-name (read-string "Project name: "))
 	 (category (read-string "Category: "))
-	 (category (if (string= category "") project-name (concat "[" category "]")))
+	 (category (if (string= category "") project-name category ))
 	 (project-dir (if (string= category project-name)
 			  (concat org-lyfe-d "projects/" project-name "/")
 			(concat org-lyfe-d "projects/" category project-name "/"))))
@@ -204,9 +204,9 @@
 		":END:\n"
 		"#+CATEGORY: " category "\n"
 		"#+TITLE: " (if (string= category project-name) project-name
-			       (concat category project-name)) "\n"
+			       (concat "[" category "]" project-name)) "\n"
 		"* NEXT Define Project: " (if (string= category project-name) project-name
-					     (concat category project-name)) "\n")
+					     (concat "[" category "]" project-name)) "\n")
 	(save-buffer)
 	(message "Project created!")))))
 
