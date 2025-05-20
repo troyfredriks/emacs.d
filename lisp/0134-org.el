@@ -22,14 +22,12 @@
 ;; Set agenda directory to org-lyfe if it exists
 ;; https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
 ;; appends all org files that should be tracked by agenda to the agenda list:
-(if (file-exists-p org-lyfe-d)
-    (setq org-agenda-files (append (list
-				    (concat org-lyfe-d "inbox.org")
-				    (concat org-lyfe-d "todo.org")
-				    (concat org-lyfe-d "someday.org"))
-				   (nconc
-				    (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t))))
-  )
+(setq org-agenda-files (append (list
+				(concat org-lyfe-d "inbox.org")
+				(concat org-lyfe-d "todo.org")
+				(concat org-lyfe-d "someday.org"))
+			       (nconc
+				(directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t))))
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)" "|" "Cancelled(c)")))
@@ -82,13 +80,22 @@
 (setq org-ellipsis " ▾ ")
 
 ;; Configure the custom org agenda view
+;; please rewrite this command to ensure it is loaded after org-agenda is loaded
+
 (setq org-agenda-custom-commands
       '((" " "Agenda"
         ((agenda ""
                  ((org-agenda-span 1)
                   (org-agenda-start-on-weekday nil)
                   (org-agenda-start-day "+0d")
-                  (org-deadline-warning-days 365)))
+                  (org-deadline-warning-days 365)
+		  (org-agenda-files (append (list
+					     (concat org-lyfe-d "inbox.org")
+					     (concat org-lyfe-d "todo.org")
+					     (concat org-lyfe-d "someday.org"))
+					    (nconc
+					     (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t))))
+		  ))
 
          (todo "TODO"
                ((org-agenda-overriding-header " To Refile")
@@ -152,22 +159,54 @@
 	(troyaf/org-set-deadline-or-schedule)
 	(org-refile nil nil nil))))
 
+;; agenda view equivlents:
+;; set deadline or schedule
+;; custom function that prompts user to set a deadline, schedule or none. use s for schedule, d for deadline and <enter> for none.
+(defun troyaf/org-agenda-set-deadline-or-schedule ()
+  (interactive)
+  (let ((choice (read-char-choice "Set deadline (d), schedule (s) or none (enter): " '(?d ?s ?\C-m))))
+    (cond
+     ((eq choice ?d)
+      (org-agenda-deadline nil nil))
+     ((eq choice ?s)
+      (org-agenda-schedule nil nil))
+     ((eq choice ?\C-m)
+      (message "No deadline or schedule set.")))))
+
+;; refile single task
+(defun troyaf/org-agenda-refile-inbox ()
+  (interactive)
+    (if (y-or-n-p "Does this task take less than 2 minutes? ")
+	(message "Please do it now!")
+      (progn
+	(org-agenda-set-tags)
+	(org-agenda-priority)
+	(troyaf/org-agenda-set-deadline-or-schedule)
+	(org-agenda-refile nil nil nil))))
+
 ;; create new project
 ;; this custom function creates a new project in the projects directory, including a new dir and a todo.org file.
 (defun troyaf/org-create-new-project ()
   (interactive)
   (let* ((project-name (read-string "Project name: "))
-	 (project-dir (concat org-lyfe-d "projects/" project-name "/")))
+	 (category (read-string "Category: "))
+	 (category (if (string= category "") project-name (concat "[" category "]")))
+	 (project-dir (if (string= category project-name)
+			  (concat org-lyfe-d "projects/" project-name "/")
+			(concat org-lyfe-d "projects/" category project-name "/"))))
     (if (file-exists-p project-dir)
 	(message "Project already exists!")
       (progn
 	(make-directory project-dir t) ; Ensure the directory is created recursively
 	(find-file (concat project-dir "todo.org"))
 	(insert ":PROPERTIES:\n"
-		"#+CATEGORY: " project-name "\n"
+		":CREATED: " (format-time-string "%Y-%m-%d %H:%M") "\n"
 		":END:\n"
-		"#+TITLE: " project-name "\n"
-		"* NEXT Define Project: " project-name "\n")
+		"#+CATEGORY: " category "\n"
+		"#+TITLE: " (if (string= category project-name) project-name
+			       (concat category project-name)) "\n"
+		"* NEXT Define Project: " (if (string= category project-name) project-name
+					     (concat category project-name)) "\n")
 	(save-buffer)
 	(message "Project created!")))))
 
