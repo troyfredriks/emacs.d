@@ -131,7 +131,7 @@
 (setq org-refile-allow-creating-parent-nodes 'confirm)  ;; Allow creation of headings under which to group tasks, when refiling them
 (setq org-refile-targets  `(
 			   (,(concat org-lyfe-d "todo.org") :level . 0)
-			   (,(concat org-lyfe-d "someday.org") :level . 0)
+			   (,(concat org-lyfe-d "someday.org") :level . 1)
 			   (,(directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t) :level . 0)
 			   ))
 
@@ -193,7 +193,7 @@
 	 (category (if (string= category "") project-name category ))
 	 (project-dir (if (string= category project-name)
 			  (concat org-lyfe-d "projects/" project-name "/")
-			(concat org-lyfe-d "projects/" category project-name "/"))))
+			(concat org-lyfe-d "projects/" "[" category "]" project-name "/"))))
     (if (file-exists-p project-dir)
 	(message "Project already exists!")
       (progn
