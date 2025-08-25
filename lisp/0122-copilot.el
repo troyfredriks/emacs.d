@@ -12,12 +12,14 @@
            :branch "main"))
 
 ;; Use it
-(add-hook 'prog-mode-hook 'copilot-mode)
+
 ;; workaround for annoying warning spam. TODO: fix this the proper way via:
 ;; copilot-indentation-alist
-(setq copilot-indent-offset-warning-disable t)
+
 ;; Configure keys
 (after-load 'copilot
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (setq copilot-indent-offset-warning-disable t)
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
   )

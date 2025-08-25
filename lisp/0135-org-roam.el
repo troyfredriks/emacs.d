@@ -11,6 +11,8 @@
 ;; Install it
 (install-pkg 'org-roam)
 
+(require 'org-roam)
+
 ;; Configure it
 (if (file-exists-p org-roam-d)
     (setq org-roam-directory (file-truename org-roam-d))
