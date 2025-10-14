@@ -118,7 +118,7 @@
                 (org-agenda-files (list (concat org-lyfe-d "todo.org")))))
 
 	 (todo "HOLD"
-               ((org-agenda-overriding-header " Blocked Tasks")
+               ((org-agenda-overriding-header " Delgated Tasks")
                 (org-agenda-files  (cons
 				    (concat org-lyfe-d "todo.org")
                                     (directory-files-recursively (concat org-lyfe-d "projects/") "\\(^\\|/\\)todo\\.org$" nil t)

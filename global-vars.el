@@ -56,6 +56,7 @@
 (defconst org-lyfe-d (expand-file-name "~/notes/"))
 
 (defconst org-roam-d (concat org-lyfe-d "brainspace/"))
+(defconst biblio-f (concat org-lyfe-d ".bibtex/biblio.bib"))
 ;; save-place file
 (defconst save-place-f (concat etc-d "/saveplace"))
 
